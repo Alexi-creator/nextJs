@@ -20,6 +20,15 @@
 	background-color: var(--primary);
 }
 
+.ghost svg {
+	transition: all 0.2s linear;
+}
+
+.primary svg,
+.ghost:hover svg {
+	fill: var(--white);
+}
+
 .primary:hover {
 	background-color: var(--primary-hover);
 }

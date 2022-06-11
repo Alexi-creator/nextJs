@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, Htag, Ptag, Tag } from "../components";
+import { Button, Htag, Ptag, Tag, Rating } from "../components";
 
 export default function Home(): JSX.Element {
   const [counter, setCounter] = useState<number>(0);
@@ -13,6 +13,7 @@ export default function Home(): JSX.Element {
 
   return (
     <div>
+      <Rating rating={4}  />
       {counter}
       <Htag tag="h1">Text</Htag>
       <Button

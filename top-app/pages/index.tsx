@@ -3,17 +3,12 @@ import { Button, Htag, Ptag, Tag, Rating } from "../components";
 
 export default function Home(): JSX.Element {
   const [counter, setCounter] = useState<number>(0);
-
-  useEffect(() => {
-    console.log('counter', counter);
-    return function cleanup() {
-      console.log('unmount');
-    };
-  }, []);
+  
+  const [rating, setRating] = useState<number>(4);
 
   return (
     <div>
-      <Rating rating={4}  />
+      <Rating rating={rating} isEditable setRating={setRating} />
       {counter}
       <Htag tag="h1">Text</Htag>
       <Button

@@ -5,7 +5,7 @@ import { withLayout } from "../layout/Layout";
 import axios from 'axios';
 import { MenuItem } from "../interfaces/menu.interface";
 
-function Home({ menu }: HomeProps): JSX.Element {
+function Home(): JSX.Element {
   const [counter, setCounter] = useState<number>(0);
   
   const [rating, setRating] = useState<number>(4);
@@ -34,11 +34,6 @@ function Home({ menu }: HomeProps): JSX.Element {
       <Tag href="www.site.com" color="red">
         Tag2
       </Tag>
-      <ul>
-        {menu.map((m) => (
-          <li key={m._id.secondCategory}>{m._id.secondCategory}</li>
-        ))}
-      </ul>
     </>
   );
 }

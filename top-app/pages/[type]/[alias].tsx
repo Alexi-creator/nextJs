@@ -9,13 +9,18 @@ import {
 import { ParsedUrlQuery } from "querystring";
 import { ProductModel } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "../../helpers/helpres";
+import { TopPageComponents } from '../../page-components';
 
-function Course({ menu, page, products }: CourseProps): JSX.Element {
-  return <>{products && products.length}</>;
+function TopPage({ page, products, firstCategory }: TopPageProps): JSX.Element {
+    return <TopPageComponents
+        page={page}
+        products={products}
+        firstCategory={firstCategory}
+    />;
 }
 
 // HOC шаблона куда прокидываем компонент который нужно отразить на странице
-export default withLayout(Course);
+export default withLayout(TopPage);
 
 // передаем все возможные пути для генерации страниц
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -39,7 +44,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 // ф-я next которой нужно передать данные для страницы, предварительно их получаем по API
-export const getStaticProps: GetStaticProps<CourseProps> = async ({
+export const getStaticProps: GetStaticProps<TopPageProps> = async ({
   params,
 }: GetStaticPropsContext<ParsedUrlQuery>) => {
   // если нет параметров в строке то будет возвращаться 404 страница
@@ -103,7 +108,7 @@ export const getStaticProps: GetStaticProps<CourseProps> = async ({
   }
 };
 
-interface CourseProps extends Record<string, unknown> {
+interface TopPageProps extends Record<string, unknown> {
   menu: MenuItem[];
   firstCategory: TopLevelCategory;
   page: TopPageModel;

@@ -50,11 +50,11 @@
 }
 
 .secondLevelBlock {
-    display: none;
+	display: none;
 }
 
 .secondLevelBlockOpened {
-    display: block;
+	display: block;
 }
 
 .secondLevelBlockOpened:last-child {

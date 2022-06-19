@@ -1,6 +1,14 @@
 import { GetStaticProps } from "next";
 import React, { useState } from "react";
-import { Button, Htag, Ptag, Tag, Rating } from "../components";
+import {
+  Button,
+  Htag,
+  Ptag,
+  Tag,
+  Rating,
+  Input,
+  Textarea,
+} from "../components";
 import { withLayout } from "../layout/Layout";
 import axios from 'axios';
 import { MenuItem } from "../interfaces/menu.interface";
@@ -34,6 +42,8 @@ function Home(): JSX.Element {
       <Tag href="www.site.com" color="red">
         Tag2
       </Tag>
+      <Input placeholder="Имя" />
+      <Textarea placeholder="textarea" rows={3} />
     </>
   );
 }

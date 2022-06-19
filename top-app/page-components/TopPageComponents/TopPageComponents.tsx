@@ -1,13 +1,22 @@
-import { Advantages, HhData, Htag, Ptag, Tag } from "../../components";
+import { Advantages, HhData, Htag, Sort, Tag } from "../../components";
 import { TopPageComponentsProps } from "./TopPageComponents.props";
 import styles from './TopPageComponents.module.css';
 import { TopLevelCategory } from "../../interfaces/page.interface";
+import { SortEnum } from "../../components/Sort/Sort.props";
+import { useReducer } from "react";
+import { sortReducer } from "../../components/Sort/sort.reducer";
 
 export const TopPageComponents = ({
   page,
   products,
   firstCategory,
 }: TopPageComponentsProps): JSX.Element => {
+  const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(sortReducer, { products, sort: SortEnum.Rating });
+
+  const setSort = (sort: SortEnum) => {
+    dispatchSort({ type: sort });
+  };
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.title}>
@@ -17,11 +26,12 @@ export const TopPageComponents = ({
             {products.length}
           </Tag>
         )}
-        <span>Сортировка</span>
+        <Sort sort={sort} setSort={setSort} />
       </div>
 
       <div className={styles.products}>
-        {products && products.map((p) => <div key={p._id}>{p.title}</div>)}
+        {sortedProducts &&
+          sortedProducts.map((p) => <div key={p._id}>{p.title}</div>)}
       </div>
 
       <div className={styles.hhTitle}>
@@ -42,11 +52,18 @@ export const TopPageComponents = ({
           <Advantages advantages={page.advantages} />
         </>
       )}
-      {page.seoText && <div className={styles.seo} dangerouslySetInnerHTML={{ __html: page.seoText }} />}
+      {page.seoText && (
+        <div
+          className={styles.seo}
+          dangerouslySetInnerHTML={{ __html: page.seoText }}
+        />
+      )}
       <Htag tag="h2">Получаемые навыки</Htag>
-      {page.tags.map(t => <Tag key={t} color='primary'>
-        {t}
-      </Tag>)}
+      {page.tags.map((t) => (
+        <Tag key={t} color="primary">
+          {t}
+        </Tag>
+      ))}
     </div>
   );
 };

@@ -1,0 +1,160 @@
+.product {
+	display: grid;
+	grid-template-columns: [start] 70px [logoend] 30px [titlestart] calc(50% - 100px) [middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
+
+	padding: 30px 30px 20px;
+}
+
+.product:not(:last-child) {
+	margin-bottom: 30px;
+}
+
+.logo {
+	grid-column: start / logoend;
+	grid-row: 1 / span 2;
+}
+
+.title,
+.tags {
+	grid-column: titlestart / middle;
+}
+
+.price,
+.priceTitle {
+	grid-column: pricestart / priceend;
+}
+
+.credit,
+.creditTitle {
+	grid-column: creditstart / creditend;
+}
+
+.rating,
+.rateTitle {
+	grid-column: ratestart / end;
+}
+
+.hr,
+.description {
+	grid-column: start / end;
+}
+
+.feature {
+	grid-column: start / middle;
+}
+
+.advBlock {
+	grid-column: middle / end;
+}
+
+.actions {
+	grid-column: start / end;
+}
+
+.logo img {
+	border-radius: 5px;
+}
+
+.title {
+	align-self: end;
+
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 27px;
+}
+
+.price,
+.credit {
+	align-self: end;
+
+	font-size: 20px;
+	line-height: 27px;
+}
+
+.rating {
+	align-self: end;
+}
+
+.priceTitle,
+.creditTitle,
+.rateTitle {
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 19px;
+}
+
+.month {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+.oldPrice {
+	margin-left: 5px;
+}
+
+.category {
+	margin-top: 7px;
+}
+
+.description {
+	margin-bottom: 15px;
+
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.reviewButton {
+	margin-left: 20px;
+}
+
+.advBlock {
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.advTitle {
+	margin-bottom: 5px;
+
+	font-weight: 700;
+}
+
+.advantages,
+.disadvantages {
+	padding-left: 15px;
+}
+
+.advantages {
+	margin-bottom: 20px;
+
+	border-left: 2px solid var(--green);
+}
+
+.disadvantages {
+	border-left: 2px solid var(--red);
+}
+
+.characteristics {
+	display: grid;
+	align-items: center;
+
+	padding-right: 60px;
+
+	font-size: 16px;
+	line-height: 32px;
+	grid-template-columns: auto 1fr auto;
+	gap: 15px;
+}
+
+.characteristicsName {
+	font-weight: 700;
+}
+
+.characteristicsDots {
+	margin-top: 10px;
+
+	border-bottom: 1px dotted #C4C4C4;
+}
+
+.characteristicsValue {
+	font-weight: 500;
+}

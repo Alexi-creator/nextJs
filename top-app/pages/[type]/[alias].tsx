@@ -12,11 +12,11 @@ import { firstLevelMenu } from "../../helpers/helpres";
 import { TopPageComponents } from '../../page-components';
 
 function TopPage({ page, products, firstCategory }: TopPageProps): JSX.Element {
-    return <TopPageComponents
-        page={page}
-        products={products}
-        firstCategory={firstCategory}
-    />;
+  return <TopPageComponents
+      page={page}
+      products={products}
+      firstCategory={firstCategory}
+  />;
 }
 
 // HOC шаблона куда прокидываем компонент который нужно отразить на странице

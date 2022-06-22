@@ -10,6 +10,7 @@ import { declOfNum, priceRu } from "../../helpers/helpres";
 import { Divider } from "../Divider/Divider";
 import Image from "next/image";
 import { Review } from "../Review/Review";
+import { ReviewForm } from "../ReviewForm/ReviewForm";
 
 export const Product = ({
   product,
@@ -92,14 +93,16 @@ export const Product = ({
         <Divider className={cn(styles.hr, styles.hr2)} />
         <div className={styles.actions}>
           <Button appearance="primary">Узнать подробнее</Button>
-          <Button
-            onClick={() => setIsReviewOpened(!isReviewOpened)}
-            appearance="ghost"
-            arrow={isReviewOpened ? "down" : "right"}
-            className={styles.reviewButton}
-          >
-            Читать отзывы
-          </Button>
+          {product.reviews.length > 0 && (
+            <Button
+              onClick={() => setIsReviewOpened(!isReviewOpened)}
+              appearance="ghost"
+              arrow={isReviewOpened ? "down" : "right"}
+              className={styles.reviewButton}
+            >
+              Читать отзывы
+            </Button>
+          )}
         </div>
       </Card>
       <Card
@@ -109,9 +112,13 @@ export const Product = ({
           [styles.closed]: !isReviewOpened,
         })}
       >
-        {product.reviews.map(r => (
-          <Review key={r._id} review={r} />
+        {product.reviews.map((r) => (
+          <>
+            <Review key={r._id} review={r} />
+            <Divider />
+          </>
         ))}
+        <ReviewForm productId={product._id} />
       </Card>
     </>
   );

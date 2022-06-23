@@ -3,6 +3,7 @@
 
 	color: var(--black);
 	border: none;
+	border: 1px solid transparent;
 	border-radius: 5px;
 
 	outline-color: var(--primary);
@@ -17,4 +18,20 @@
 
 .input::placeholder {
 	color: var(--gray);
+}
+
+.inputWrapper {
+	position: relative;
+}
+
+.error {
+	border: 1px solid var(--red);
+}
+
+.errorMessage {
+	position: absolute;
+	bottom: -20px;
+	left: 0;
+
+	color: var(--red);
 }

@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { ForwardedRef, forwardRef } from "react";
 import { InputProps } from "./Input.props";
-import cn from 'classnames';
+import cn from "classnames";
 import styles from "./Input.module.css";
 
-export const Input = ({
-  className,
-  ...props
-}: InputProps): JSX.Element => {
-  return (
-   <input
-    className={cn(className, styles.input)}
-    {...props}
-   />
-  );
-};
+// forwardRef ф-я которая принимает ф-ию компонент для прокидываения ref на элемент дома
+
+export const Input = forwardRef(
+  (
+    { className, error, ...props }: InputProps,
+    ref: ForwardedRef<HTMLInputElement>
+  ): JSX.Element => {
+    return (
+      <div className={styles.inputWrapper}>
+        <input className={cn(className, styles.input, {
+          [styles.error]: error
+        })} ref={ref} {...props} />
+        {error && <span className={styles.errorMessage}>{error.message}</span>}
+      </div>
+    );
+  }
+);

@@ -33,14 +33,22 @@
 	gap: 20px;
 }
 
-.success {
+.success,
+.error {
 	position: relative;
 
 	margin-top: 20px;
 	padding: 20px;
 
 	border-radius: 5px;
+}
+
+.success {
 	background: var(--green-light);
+}
+
+.error {
+	background: var(--red-light);
 }
 
 .successTitle {
@@ -53,6 +61,10 @@
 	right: 20px;
 
 	cursor: pointer;
+}
+
+.error .close path {
+	stroke: var(--red);
 }
 
 @media screen and (max-width: 1200px) {

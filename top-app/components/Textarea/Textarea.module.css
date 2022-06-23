@@ -15,6 +15,7 @@
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 22px;
+	resize: none;
 }
 
 .input::placeholder {

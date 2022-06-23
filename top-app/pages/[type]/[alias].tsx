@@ -10,6 +10,7 @@ import { ParsedUrlQuery } from "querystring";
 import { ProductModel } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "../../helpers/helpres";
 import { TopPageComponents } from '../../page-components';
+import { API } from "../../helpers/api";
 
 function TopPage({ page, products, firstCategory }: TopPageProps): JSX.Element {
   return <TopPageComponents
@@ -27,7 +28,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   let paths: string[] = [];
   for (const m of firstLevelMenu) {
     const { data: menu } = await axios.post<MenuItem[]>(
-      process.env.NEXT_PUBLIC_DOMAIN + "/api/top-page/find",
+      API.topPage.find,
       {
         firstCategory: m.id,
       }
@@ -66,7 +67,7 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
   // проверка для запросов если будет ошибка то возвращаем 404 страницу
   try {
     const { data: menu } = await axios.post<MenuItem[]>(
-      process.env.NEXT_PUBLIC_DOMAIN + "/api/top-page/find",
+      API.topPage.find,
       {
         firstCategory: firstCategoryItem.id,
       }
@@ -81,11 +82,11 @@ export const getStaticProps: GetStaticProps<TopPageProps> = async ({
 
     // для получения данных в запросе используем params которые передан в ф-ии getStaticProps
     const { data: page } = await axios.get<TopPageModel>(
-      process.env.NEXT_PUBLIC_DOMAIN + "/api/top-page/byAlias/" + params.alias
+      API.topPage.byAlias + params.alias
     );
 
     const { data: products } = await axios.post<ProductModel[]>(
-      process.env.NEXT_PUBLIC_DOMAIN + "/api/product/find",
+      API.product.find,
       {
         category: page.category,
         limit: 10,

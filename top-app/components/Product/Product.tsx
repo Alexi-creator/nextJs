@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { ProductProps } from "./Product.props";
 import cn from "classnames";
 import styles from "./Product.module.css";
@@ -18,13 +18,19 @@ export const Product = ({
   ...props
 }: ProductProps): JSX.Element => {
   const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+  const reviewRef = useRef<HTMLDivElement>(null);
+
+  const scrollToReview = () => {
+    setIsReviewOpened(true);
+    reviewRef.current?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  }
 
   return (
-    <>
-      <Card
-        className={cn(styles.product, className)}
-        // {...props}
-      >
+    <div className={className} {...props}>
+      <Card className={cn(styles.product, className)}>
         <div className={styles.logo}>
           <Image
             src={
@@ -63,7 +69,9 @@ export const Product = ({
         <div className={styles.creditTitle}>в кредит</div>
         <div className={styles.rateTitle}>
           {product.reviewCount}&nbsp;
-          {declOfNum(product.reviewCount, ["отзыв", "отзыва", "отзывов"])}
+          <a href="#ref" onClick={scrollToReview}>
+            {declOfNum(product.reviewCount, ["отзыв", "отзыва", "отзывов"])}
+          </a>
         </div>
         <Divider className={styles.hr} />
         <div className={styles.description}>{product.description}</div>
@@ -111,6 +119,7 @@ export const Product = ({
           [styles.opened]: isReviewOpened,
           [styles.closed]: !isReviewOpened,
         })}
+        ref={reviewRef}
       >
         {product.reviews.map((r) => (
           <div key={r._id}>
@@ -120,6 +129,6 @@ export const Product = ({
         ))}
         <ReviewForm productId={product._id} />
       </Card>
-    </>
+    </div>
   );
 };

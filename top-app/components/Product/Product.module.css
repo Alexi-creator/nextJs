@@ -132,7 +132,7 @@
 .advantages {
 	margin-bottom: 20px;
 
-	border-left: 2px solid var(--green);
+	border-left: 2px solid #1DC37E;
 }
 
 .disadvantages {
@@ -167,6 +167,7 @@
 
 .reviews {
 	overflow: hidden;
+
 	padding: 30px;
 }
 

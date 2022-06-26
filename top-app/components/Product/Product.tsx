@@ -25,9 +25,9 @@ export const Product = motion(
       const variants = {
         visiable: {
           height: "auto",
-          opacity: 0,
+          opacity: 1,
         },
-        hidden: { opacity: 1, height: 0 },
+        hidden: { opacity: 0, height: 0 },
       };
 
       const scrollToReview = () => {
@@ -124,7 +124,7 @@ export const Product = motion(
           </Card>
           <motion.div
             variants={variants}
-            initial={isReviewOpened ? "visiable" : "hidden"}
+            initial={"hidden"}
             animate={isReviewOpened ? "visiable" : "hidden"}
           >
             <Card color="blue" className={styles.reviews} ref={reviewRef}>

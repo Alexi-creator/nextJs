@@ -2,6 +2,8 @@
 	width: 100%;
 	padding: 7px 15px;
 
+	resize: none;
+
 	color: var(--black);
 	border: none;
 	border: 1px solid transparent;
@@ -15,7 +17,6 @@
 	font-size: 16px;
 	font-weight: 400;
 	line-height: 22px;
-	resize: none;
 }
 
 .input::placeholder {

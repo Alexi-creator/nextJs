@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import { SortEnum, SortProps } from "./Sort.props";
 import cn from 'classnames';
 import styles from "./Sort.module.css";
@@ -9,22 +9,22 @@ export const Sort = ({
 }: SortProps): JSX.Element => {
   return (
     <div className={cn(styles.sort, className)} {...props}>
-      <span
+      <button
         className={cn({
           [styles.active]: sort === SortEnum.Rating,
         })}
         onClick={() => setSort(SortEnum.Rating)}
       >
         <SortIcon className={styles.sortIcon} /> По рейтингу
-      </span>
-      <span
+      </button>
+      <button
         className={cn({
           [styles.active]: sort === SortEnum.Price,
         })}
         onClick={() => setSort(SortEnum.Price)}
       >
         <SortIcon className={styles.sortIcon} /> По цене
-      </span>
+      </button>
     </div>
   );
 };

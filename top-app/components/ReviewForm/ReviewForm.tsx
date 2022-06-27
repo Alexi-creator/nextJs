@@ -15,9 +15,16 @@ import { API } from "../../helpers/api";
 export const ReviewForm = ({
   productId,
   className,
+  isOpened,
   ...props
 }: ReviewFormProps): JSX.Element => {
-  const { register, control, handleSubmit, formState: { errors }, reset } = useForm<IReviewForm>();
+  const {
+    register,
+    control,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<IReviewForm>();
 
   const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const [error, setError] = useState<string>();
@@ -37,11 +44,10 @@ export const ReviewForm = ({
         setIsSuccess(true);
         reset();
       } else {
-        setError('Что то пошло не так...');
+        setError("Что то пошло не так...");
       }
-
-    } catch (e) {
-      setError(e.message);
+    } catch {
+      setError("что то пошло не так");
     }
   };
 
@@ -56,6 +62,7 @@ export const ReviewForm = ({
           placeholder="Имя"
           error={errors.name}
           className={styles.inputName}
+          tabIndex={isOpened ? 0 : -1}
         />
         <Input
           {...register("title", {
@@ -64,6 +71,7 @@ export const ReviewForm = ({
           placeholder="Заголовок отзыва"
           error={errors.title}
           className={styles.title}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.rating}>
           <span>Оценка:</span>
@@ -78,6 +86,7 @@ export const ReviewForm = ({
                 rating={field.value}
                 error={errors.rating}
                 isEditable
+                tabIndex={isOpened ? 0 : -1}
               />
             )}
           />
@@ -89,24 +98,37 @@ export const ReviewForm = ({
           placeholder="Текст отзыва"
           error={errors.description}
           className={styles.description}
+          tabIndex={isOpened ? 0 : -1}
         />
         <div className={styles.submit}>
-          <Button appearance="primary">Отправить</Button>
+          <Button appearance="primary" tabIndex={isOpened ? 0 : -1}>
+            Отправить
+          </Button>
           <span className={styles.info}>
             * Перед публикацией отзыв пройдет предварительную модерацию и
             проверку
           </span>
         </div>
       </div>
-      {isSuccess && <div className={styles.success}>
-        <div className={styles.successTitle}>Ваш отзыв отправлен</div>
-        <div>Спасибо, ваш отзыв будет опубликован после проверки.</div>
-        <CloseIcon onClick={() => setIsSuccess(false)} className={styles.close} />
-      </div>}
-      {error && <div className={styles.error}>
-        Что-то пошло не так попробуйте обновить страницу
-        <CloseIcon onClick={() => setError(undefined)} className={styles.close} />
-      </div>}
+      {isSuccess && (
+        <div className={styles.success}>
+          <div className={styles.successTitle}>Ваш отзыв отправлен</div>
+          <div>Спасибо, ваш отзыв будет опубликован после проверки.</div>
+          <CloseIcon
+            onClick={() => setIsSuccess(false)}
+            className={styles.close}
+          />
+        </div>
+      )}
+      {error && (
+        <div className={styles.error}>
+          Что-то пошло не так попробуйте обновить страницу
+          <CloseIcon
+            onClick={() => setError(undefined)}
+            className={styles.close}
+          />
+        </div>
+      )}
     </form>
   );
 };

@@ -1,4 +1,9 @@
-import React, { ForwardedRef, forwardRef, useRef, useState } from "react";
+import React, {
+  ForwardedRef,
+  forwardRef,
+  useRef,
+  useState,
+} from "react";
 import { ProductProps } from "./Product.props";
 import cn from "classnames";
 import styles from "./Product.module.css";
@@ -36,6 +41,7 @@ export const Product = motion(
           behavior: "smooth",
           block: "start",
         });
+        reviewRef.current?.focus();
       };
 
       return (
@@ -80,7 +86,10 @@ export const Product = motion(
             <div className={styles.creditTitle}>в кредит</div>
             <div className={styles.rateTitle}>
               {product.reviewCount}&nbsp;
-              <a href="#ref" onClick={scrollToReview}>
+              <a
+                href="#ref"
+                onClick={scrollToReview}
+              >
                 {declOfNum(product.reviewCount, ["отзыв", "отзыва", "отзывов"])}
               </a>
             </div>
@@ -127,14 +136,19 @@ export const Product = motion(
             initial={"hidden"}
             animate={isReviewOpened ? "visiable" : "hidden"}
           >
-            <Card color="blue" className={styles.reviews} ref={reviewRef}>
+            <Card
+              color="blue"
+              className={styles.reviews}
+              ref={reviewRef}
+              tabIndex={isReviewOpened ? 0 : -1}
+            >
               {product.reviews.map((r) => (
                 <div key={r._id}>
                   <Review review={r} />
                   <Divider />
                 </div>
               ))}
-              <ReviewForm productId={product._id} />
+              <ReviewForm productId={product._id} isOpened={isReviewOpened} />
             </Card>
           </motion.div>
         </div>

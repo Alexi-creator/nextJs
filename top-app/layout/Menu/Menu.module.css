@@ -61,11 +61,11 @@
 
 	color: var(--gray-dark);
 
+	outline-offset: -1px;
+
 	font-size: 14px;
 
 	font-weight: 500;
-
-	outline-offset: -1px;
 }
 
 .thirdLevelActive,

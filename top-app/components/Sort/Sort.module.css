@@ -33,3 +33,7 @@
 	grid-template-columns: auto auto;
 	gap: 8px;
 }
+
+.sortName {
+	display: none;
+}

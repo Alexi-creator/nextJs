@@ -11,13 +11,26 @@ import { ProductModel } from "../../interfaces/product.interface";
 import { firstLevelMenu } from "../../helpers/helpres";
 import { TopPageComponents } from '../../page-components';
 import { API } from "../../helpers/api";
+import Head from 'next/head';
 
 function TopPage({ page, products, firstCategory }: TopPageProps): JSX.Element {
-  return <TopPageComponents
-      page={page}
-      products={products}
-      firstCategory={firstCategory}
-  />;
+  return (
+    <>
+      {/* Head позволяет перезаписывать мета данные title итд */}
+      <Head>
+        <title>{page.metaTitle}</title>
+        <meta name="description" content={page.metaDescription} />
+        <meta property="og:title" content={page.metaTitle} />
+        <meta property="og:description" content={page.metaDescription} />
+        <meta property="og:type" content="article" />
+      </Head>
+      <TopPageComponents
+        page={page}
+        products={products}
+        firstCategory={firstCategory}
+      />
+    </>
+  );
 }
 
 // HOC шаблона куда прокидываем компонент который нужно отразить на странице

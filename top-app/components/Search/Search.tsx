@@ -42,6 +42,7 @@ export const Search = ({
         appearance="primary"
         className={styles.button}
         onClick={goToSearch}
+        aria-label="Искать по сайту"
       >
         <SearchIcon />
       </Button>

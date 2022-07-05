@@ -13,7 +13,7 @@ import { Tag } from "../Tag/Tag";
 import { Button } from "../Button/Button";
 import { declOfNum, priceRu } from "../../helpers/helpres";
 import { Divider } from "../Divider/Divider";
-import Image from "next/image";
+// import Image from "next/image";
 import { Review } from "../Review/Review";
 import { ReviewForm } from "../ReviewForm/ReviewForm";
 import { motion } from "framer-motion";
@@ -48,7 +48,9 @@ export const Product = motion(
         <div className={className} {...props} ref={ref}>
           <Card className={cn(styles.product, className)}>
             <div className={styles.logo}>
-              <Image
+              {/* Image это встроенные оптимизатор картинок */}
+              {/* <Image */}
+              <img
                 src={
                   product.image.includes("cdn")
                     ? product.image
@@ -86,10 +88,7 @@ export const Product = motion(
             <div className={styles.creditTitle}>в кредит</div>
             <div className={styles.rateTitle}>
               {product.reviewCount}&nbsp;
-              <a
-                href="#ref"
-                onClick={scrollToReview}
-              >
+              <a href="#ref" onClick={scrollToReview}>
                 {declOfNum(product.reviewCount, ["отзыв", "отзыва", "отзывов"])}
               </a>
             </div>

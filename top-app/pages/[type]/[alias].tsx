@@ -12,8 +12,13 @@ import { firstLevelMenu } from "../../helpers/helpres";
 import { TopPageComponents } from '../../page-components';
 import { API } from "../../helpers/api";
 import Head from 'next/head';
+import { Error404 } from "../404";
 
 function TopPage({ page, products, firstCategory }: TopPageProps): JSX.Element {
+  if (!page || !products) {
+    return <Error404 />;
+  }
+
   return (
     <>
       {/* Head позволяет перезаписывать мета данные title итд */}
@@ -53,7 +58,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths,
-    fallback: true,
+    fallback: false,
   };
 };
 

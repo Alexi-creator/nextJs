@@ -1,11 +1,11 @@
 import { AppProps } from 'next/dist/shared/lib/router/router';
 import Head from 'next/head';
 import '../styles/globals.css';
+// import Router from "next/router";
 // import ym from "react-yandex-metrika";
 // import { YMInitializer } from "react-yandex-metrika";
 
-function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
-  // router.events.on('routeChangeComplete', (url: string) => {
+// Router.events.on('routeChangeComplete', (url: string) => {
   //   // проверка на серевере рендериться страничка или уже на клиенте находимся
   //   // нам нужно знать что мы на клиенте
   //   // if (typeof window !== 'undefined') {
@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   //   // }
   // });
 
+function MyApp({ Component, pageProps, router }: AppProps): JSX.Element {
   return (
     <>
       {/* заголовки мета подключаются на каждой странице при ренедере */}
